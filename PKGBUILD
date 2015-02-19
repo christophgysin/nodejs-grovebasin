@@ -1,4 +1,5 @@
-# Maintainer: Jeremy "Ichimonji10" Audet <ichimonji10 at gmail dot com>
+# Maintainer: Christoph Gysin <christoph.gysin@gmail.com>
+# Contributor: Jeremy "Ichimonji10" Audet <ichimonji10 at gmail dot com>
 # Contributor: Andrew Kelley <superjoe30@gmail.com>
 # Contributor: superjoe <superjoe30@gmail.com>
 #
@@ -30,23 +31,15 @@ build() {
 }
 
 package() {
-  # install application
-  local _npmdir="${pkgdir}/usr/lib/node_modules/"
-  mkdir -p "${srcdir}/${_npmdir}"
-  cd "${srcdir}/${_npmdir}"
-
   npm \
     --python=python2 \
     install \
     --user root \
     --global \
     --prefix "${pkgdir}/usr" \
-    "${_pkgname}@${pkgver}"
+    "${srcdir}/${_pkgname}-${pkgver}"
 
-  # install executable
   install -Dm755 "${srcdir}/groovebasin" "${pkgdir}/usr/bin/${_pkgname}"
-
-  # install license
   install -Dm644 "${srcdir}/${_pkgname}-${pkgver}/LICENSE" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 
