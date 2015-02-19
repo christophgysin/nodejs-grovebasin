@@ -18,10 +18,17 @@ depends=(nodejs libgroove)
 makedepends=(python2)
 source=("https://github.com/andrewrk/groovebasin/archive/${pkgver}.tar.gz"
         groovebasin
-        groovebasin.service)
+        groovebasin.service
+        groovebasin-1.5.0-nodejs-0.12.patch)
 sha256sums=('bee0ec46246c9759832f1e5a8805bc87c4451726d380f4c4e6b2def98b557305'
             '5169f64bbe305959d6c2c76f73b10c3a604586cb884c78e9b620e476f45132df'
-            'f46397292c6da77464dd483c84da6440d1571cdc2ffb4ea65820ce1432ee9898')
+            'f46397292c6da77464dd483c84da6440d1571cdc2ffb4ea65820ce1432ee9898'
+            'f519135f62cda0ed4443d4b3c461b0d29000ab02e3656ffc1397d8d74c7f5eef')
+
+prepare() {
+  cd "${srcdir}/${_pkgname}-${pkgver}"
+  patch -fNp1 -i "${srcdir}/groovebasin-1.5.0-nodejs-0.12.patch"
+}
 
 build() {
   cd "${srcdir}/${_pkgname}-${pkgver}"
