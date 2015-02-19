@@ -16,13 +16,15 @@ url='http://groovebasin.com/'
 license=(MIT)
 depends=(nodejs libgroove)
 makedepends=(python2)
+backup=var/lib/groovebasin/config.json
+install=install
 source=("https://github.com/andrewrk/groovebasin/archive/${pkgver}.tar.gz"
         groovebasin
         groovebasin.service
         groovebasin-1.5.0-nodejs-0.12.patch)
 sha256sums=('bee0ec46246c9759832f1e5a8805bc87c4451726d380f4c4e6b2def98b557305'
             '5169f64bbe305959d6c2c76f73b10c3a604586cb884c78e9b620e476f45132df'
-            'f46397292c6da77464dd483c84da6440d1571cdc2ffb4ea65820ce1432ee9898'
+            'fca2b5d94cef9e5b70936bdb47c4a69724050d657fe72f471f989dce933a1caa'
             'f519135f62cda0ed4443d4b3c461b0d29000ab02e3656ffc1397d8d74c7f5eef')
 
 prepare() {
@@ -50,8 +52,8 @@ package() {
   install -Dm644 "${srcdir}/${_pkgname}-${pkgver}/LICENSE" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 
-  install -d -g 45 -o 45 "${pkgdir}"/var/lib/groovebasin
-  install -d -g 45 -o 45 "${pkgdir}"/var/lib/groovebasin/certs
+  install -d -g 49 -o 49 "${pkgdir}"/var/lib/groovebasin
+  install -d -g 49 -o 49 "${pkgdir}"/var/lib/groovebasin/certs
 
   ln -sf /usr/lib/node_modules/groovebasin/certs/self-signed-key.pem \
     "${pkgdir}"/var/lib/groovebasin/certs
