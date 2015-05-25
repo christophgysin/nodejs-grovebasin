@@ -17,7 +17,7 @@ license=(MIT)
 depends=(nodejs libgroove)
 makedepends=(python2)
 backup='etc/groovebasin.json'
-install=install
+install=groovebasin.install
 source=("https://github.com/andrewrk/groovebasin/archive/${pkgver}.tar.gz"
         groovebasin
         groovebasin.json
